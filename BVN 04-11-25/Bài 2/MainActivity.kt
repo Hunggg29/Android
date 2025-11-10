@@ -28,32 +28,33 @@ class MainActivity : AppCompatActivity() {
         tvMessage = findViewById(R.id.tvMessage)
         lvNumbers = findViewById(R.id.lvNumbers)
 
+
         adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, mutableListOf())
         lvNumbers.adapter = adapter
 
-        // Sự kiện chọn ở hàng 1
+        // Xử lý khi chọn radio button ở hàng 1
         rgRow1.setOnCheckedChangeListener { _, checkedId ->
             if (suppressChange) return@setOnCheckedChangeListener
             if (checkedId != -1) {
                 suppressChange = true
-                rgRow2.clearCheck() // Clear hàng 2 mà không kích hoạt sự kiện
+                rgRow2.clearCheck() // Khi chọn ở hàng 1 thì bỏ chọn ở hàng 2
                 suppressChange = false
                 updateList()
             }
         }
 
-        // Sự kiện chọn ở hàng 2
+        // Xử lý khi chọn radio button ở hàng 2
         rgRow2.setOnCheckedChangeListener { _, checkedId ->
             if (suppressChange) return@setOnCheckedChangeListener
             if (checkedId != -1) {
                 suppressChange = true
-                rgRow1.clearCheck() // Clear hàng 1 mà không kích hoạt sự kiện
+                rgRow1.clearCheck() // Khi chọn ở hàng 2 thì bỏ chọn ở hàng 1
                 suppressChange = false
                 updateList()
             }
         }
 
-        //khi người dùng nhập số
+        // Khi người dùng nhập số thì tự động cập nhật danh sách
         etNumber.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) = updateList()
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -61,6 +62,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    //Hàm chính để cập nhật danh sách kết quả theo loại số và giá trị nhập
     private fun updateList() {
         val input = etNumber.text.toString()
         if (input.isEmpty()) {
@@ -80,45 +82,52 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
+        // Duyệt tất cả các số nhỏ hơn n và lọc theo loại được chọn
         val numbers = mutableListOf<Int>()
         for (i in 1 until n) {
             when (selectedId) {
-                R.id.rbOdd -> if (i % 2 != 0) numbers.add(i)
-                R.id.rbEven -> if (i % 2 == 0) numbers.add(i)
-                R.id.rbPrime -> if (isPrime(i)) numbers.add(i)
-                R.id.rbPerfect -> if (isPerfect(i)) numbers.add(i)
-                R.id.rbSquare -> if (isSquare(i)) numbers.add(i)
-                R.id.rbFibo -> if (isFibonacci(i)) numbers.add(i)
+                R.id.rbOdd -> if (i % 2 != 0) numbers.add(i) // Số lẻ
+                R.id.rbEven -> if (i % 2 == 0) numbers.add(i) // Số chẵn
+                R.id.rbPrime -> if (isPrime(i)) numbers.add(i) // Số nguyên tố
+                R.id.rbPerfect -> if (isPerfect(i)) numbers.add(i) // Số hoàn hảo
+                R.id.rbSquare -> if (isSquare(i)) numbers.add(i) // Số chính phương
+                R.id.rbFibo -> if (isFibonacci(i)) numbers.add(i) // Số Fibonacci
             }
         }
 
+        // Nếu không có số nào phù hợp thì hiển thị thông báo
         if (numbers.isEmpty()) {
             showMessage("Không có số nào thỏa mãn")
         } else {
-            tvMessage.visibility = TextView.GONE
+            tvMessage.visibility = TextView.GONE // Ẩn TextView thông báo
             adapter.clear()
-            adapter.addAll(numbers)
+            adapter.addAll(numbers) //Hiển thị danh sách mới
         }
     }
 
+    //Lấy ID của RadioButton được chọn giữa 2 hàng
     private fun getSelectedRadioButtonId(): Int {
         return if (rgRow1.checkedRadioButtonId != -1) rgRow1.checkedRadioButtonId
         else rgRow2.checkedRadioButtonId
     }
 
+    // Hiển thị thông báo thay vì danh sách
     private fun showMessage(msg: String) {
         adapter.clear()
         tvMessage.text = msg
         tvMessage.visibility = TextView.VISIBLE
     }
 
-    //Các hàm kiểm tra
+    //Các hàm kiểm tra số
+
+    // Kiểm tra số nguyên tố
     private fun isPrime(n: Int): Boolean {
         if (n < 2) return false
         for (i in 2..sqrt(n.toDouble()).toInt()) if (n % i == 0) return false
         return true
     }
 
+    //Kiểm tra số hoàn hảo
     private fun isPerfect(n: Int): Boolean {
         if (n < 2) return false
         var sum = 1
@@ -126,11 +135,13 @@ class MainActivity : AppCompatActivity() {
         return sum == n
     }
 
+    //Kiểm tra số chính phương
     private fun isSquare(n: Int): Boolean {
         val root = sqrt(n.toDouble()).toInt()
         return root * root == n
     }
 
+    // Kiểm tra số Fibonacci
     private fun isFibonacci(n: Int): Boolean {
         val test1 = 5 * n * n + 4
         val test2 = 5 * n * n - 4
