@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Nhập số -->
+    <EditText
+        android:id="@+id/etNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập số nguyên"
+        android:inputType="number"
+        android:textSize="18sp"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Hàng 1 -->
+    <RadioGroup
+        android:id="@+id/rgRow1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:layout_marginBottom="8dp">
+
+        <RadioButton
+            android:id="@+id/rbOdd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Số lẻ"
+            android:gravity="center" />
+
+        <RadioButton
+            android:id="@+id/rbPrime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Số nguyên tố"
+            android:gravity="center" />
+
+        <RadioButton
+            android:id="@+id/rbPerfect"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Số hoàn hảo"
+            android:gravity="center" />
+    </RadioGroup>
+
+    <!-- Hàng 2 -->
+    <RadioGroup
+        android:id="@+id/rgRow2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:layout_marginBottom="12dp">
+
+        <RadioButton
+            android:id="@+id/rbEven"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Số chẵn"
+            android:gravity="center" />
+
+        <RadioButton
+            android:id="@+id/rbSquare"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Số chính phương"
+            android:gravity="center" />
+
+        <RadioButton
+            android:id="@+id/rbFibo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Số Fibonacci"
+            android:gravity="center" />
+    </RadioGroup>
+
+    <!-- Thông báo -->
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Không có số nào thỏa mãn"
+        android:textAlignment="center"
+        android:textColor="#888888"
+        android:visibility="gone"
+        android:textSize="16sp"
+        android:layout_marginVertical="8dp" />
+
+    <!-- Danh sách -->
+    <ListView
+        android:id="@+id/lvNumbers"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:dividerHeight="1dp" />
+
+</LinearLayout>
