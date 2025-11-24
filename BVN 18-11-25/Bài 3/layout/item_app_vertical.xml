@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp"
+    android:background="?android:attr/selectableItemBackground">
+
+    <!-- Logo app -->
+    <TextView
+        android:id="@+id/imageViewAppIcon"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:background="@drawable/app_icon_background" />
+
+    <!-- App name -->
+    <TextView
+        android:id="@+id/textViewAppName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/imageViewAppIcon"
+        android:layout_alignTop="@+id/imageViewAppIcon"
+        android:layout_marginStart="12dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#212121"
+        android:ellipsize="end"
+        android:maxLines="2" />
+
+    <!-- Category -->
+    <TextView
+        android:id="@+id/textViewCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewAppName"
+        android:layout_toEndOf="@+id/imageViewAppIcon"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
+        android:textSize="12sp"
+        android:textColor="#757575"
+        android:ellipsize="end"
+        android:maxLines="1" />
+
+    <!-- Rating và dung lượng -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewCategory"
+        android:layout_toEndOf="@+id/imageViewAppIcon"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/textViewRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#4285F4"
+            android:layout_marginEnd="8dp" />
+
+        <TextView
+            android:id="@+id/textViewSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#757575" />
+
+    </LinearLayout>
+
+</RelativeLayout>
