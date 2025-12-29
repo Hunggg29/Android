@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/studentListFragment">
+
+    <fragment
+        android:id="@+id/studentListFragment"
+        android:name="com.example.myapplication.ui.StudentListFragment"
+        android:label="Danh Sách Sinh Viên"
+        tools:layout="@layout/fragment_student_list">
+        
+        <action
+            android:id="@+id/action_studentListFragment_to_addStudentFragment"
+            app:destination="@id/addStudentFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        
+        <action
+            android:id="@+id/action_studentListFragment_to_updateStudentFragment"
+            app:destination="@id/updateStudentFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addStudentFragment"
+        android:name="com.example.myapplication.ui.AddStudentFragment"
+        android:label="Thêm Sinh Viên"
+        tools:layout="@layout/fragment_add_student" />
+
+    <fragment
+        android:id="@+id/updateStudentFragment"
+        android:name="com.example.myapplication.ui.UpdateStudentFragment"
+        android:label="Cập Nhật Sinh Viên"
+        tools:layout="@layout/fragment_update_student" />
+
+</navigation>
